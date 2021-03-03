@@ -1,6 +1,9 @@
 const userService = require('../service/user.service');
+
 const errorCodes = require('../constant/errorCodes.enum');
 const errorMessage = require('../error/error.messages');
+
+const userModel = require('../dataBase/models/User');
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -31,6 +34,17 @@ module.exports = {
             res.status(errorCodes.CREATED).json(errorMessage.CREATED_USER);
         } catch (e) {
             res.json(e);
+        }
+    },
+
+    deleteOneUser: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            await userModel.remove({ userId });
+
+            res.status(errorCodes.SERVER_ERROR).json(errorMessage.DELETE_USER);
+        } catch (e) {
+            res.status(errorCodes.DELETED).json(errorMessage.DELETE_USER);
         }
     }
 };
