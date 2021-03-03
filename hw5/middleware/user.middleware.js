@@ -1,12 +1,10 @@
-const userService = require('../service/user.service');
-
-const { errorMessage } = require('../error');
-const { errorCodesEnum } = require('../constant');
-const { userValidators } = require('../validators');
+// const userService = require('../service/user.service');
+//
+// const { errorMessage } = require('../error');
+// const { errorCodesEnum } = require('../constant');
+// const { userValidators } = require('../validators');
 
 module.exports = {
-
-
 
     // checkIsIdValid: (req, res, next) => {
     //     try {
