@@ -45,7 +45,7 @@ module.exports = {
                 name, password, email, preferLang = 'en'
             } = req.body;
 
-            if (!name && !password && !email) {
+            if (!name || !password || !email) {
                 throw new Error(errorMessage.FILES_IS_EMPTY[preferLang]);
             }
 
