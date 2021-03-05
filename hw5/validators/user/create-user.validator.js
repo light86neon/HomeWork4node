@@ -15,7 +15,7 @@ module.exports = Joi.object({
     password: Joi.string().regex(regexpEnum.PASSWORD_REGEXP).required(),
     age: Joi.number().integer().min(3).max(120),
     car: Joi.boolean(),
-    yearOfBirth: Joi.number().Integer().min(constants.CURRENT_YEAR - 100).max(constants.CURRENT_YEAR),
+    yearOfBirth: Joi.number().integer().min(constants.CURRENT_YEAR - 100).max(constants.CURRENT_YEAR),
     // cars: carsSubSheme.optional().when('producer', { is: true, then: Joi.required() })
 
 });

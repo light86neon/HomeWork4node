@@ -1,0 +1,39 @@
+const fsExtra = require('fs-extra');
+const fs = require('fs');
+const path = require('path');
+
+const { promisify } = require('util');
+
+const usersPath = path.join(process.cwd(), 'dataBase', 'users.json');
+
+const writeFile = promisify(fs.writeFile);
+
+module.exports = {
+    findUsers: async () => {
+        const users = await fsExtra.readFile(usersPath);
+
+        return JSON.parse(users.toString());
+    },
+
+    findUserById: async (userId) => {
+        const users = await fsExtra.readFile(usersPath);
+
+        return JSON.parse(users.toString())[userId];
+    },
+
+    createUser: async (userObject) => {
+        const users = fsExtra.readFile(usersPath);
+        await users.push(userObject);
+
+        return writeFile(usersPath, JSON.stringify(users));
+    },
+
+    deleteUser: async (userId) => {
+        const users = await fsExtra.readJson(usersPath);
+        const parse = JSON.parse(users.toString());
+
+        users.splice(userId, 1);
+
+        await fsExtra.writeFile(usersPath, JSON.stringify(parse));
+    }
+};
