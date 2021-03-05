@@ -7,7 +7,7 @@ router.get('/', carController.getAllCars);
 
 router.get('/:id', carMiddleware.checkIsCarValid, carController.findCarById);
 
-router.post('/', carMiddleware.checkIsCarExists, carController.createCar);
+router.post('/', carMiddleware.checkIsCarExists, carMiddleware.checkIsCarValid, carController.createCar);
 
 router.delete('/:id', carMiddleware.checkIsCarValid, carController.deleteCar);
 
